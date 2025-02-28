@@ -1,0 +1,68 @@
+Problema:
+
+La empresa TK-U hace cotizaciones manuales, lo que es lento e ineficiente, limitando la cantidad de clientes atendidos por día.
+
+Casos que afectan el precio del seguro:
+
+Edad del asegurado:
+Si tiene entre 18-24 años ➝ +10%
+Si tiene entre 25-49 años ➝ +20%
+Si tiene 50 años o más ➝ +30%
+Estado civil y edad del cónyuge:
+Si está casado, se aplica el mismo recargo de edad al cónyuge.
+Cantidad de hijos:
++20% por cada hijo
+
+El precio base se ajusta sumando estos recargos, calculando el costo final del seguro. 
+
+
+
+
+Algoritmo Cotizador de Seguros 
+
+
+  Inicio del Programa
+1. Solicitar datos del asegurado:
+
+Pedir el nombre.
+Pedir la edad (Debe ser mayor o igual a 18).
+Si la edad es menor a 18, mostrar mensaje y terminar la ejecución.
+2. Solicitar estado civil:
+
+Si está casado ("SI" o "NO").
+Si está casado, pedir la edad del cónyuge (Debe ser mayor o igual a 18).
+Si la edad del cónyuge no es válida, asignar 0.
+3. Solicitar información sobre hijos:
+
+Pedir cantidad de hijos.
+Si no es un número válido, asignar 0.
+4. Calcular recargos:
+- Recargo por edad del asegurado:
+
+18-24 años ➝ Recargo 10% del precio base.
+25-49 años ➝ Recargo 20% del precio base.
+50 años o más ➝ Recargo 30% del precio base.
+- Recargo por edad del cónyuge (si aplica):
+
+Se usa la misma tabla de recargos.
+- Recargo por hijos:
+
++20% por cada hijo.
+5. Calcular precio final:
+
+Precio final = Precio base + Recargos Totales.
+6. Mostrar resultados:
+
+Nombre del asegurado.
+Recargo total.
+Precio final de la póliza.
+7. Repetir proceso hasta que el usuario ingrese "SALIR".
+
+Fin del Programa
+
+   Posibles Decisiones en el Algoritmo:
+- Si la edad del asegurado es menor a 18, terminar la ejecución.
+- Si el usuario ingresa "SALIR", finalizar la ejecución.
+- Validar que las edades y número de hijos sean valores numéricos correctos.
+- Aplicar los recargos correspondientes según las condiciones del asegurado.
+
