@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by anonymous (http://jsbin.com/poxidigiqe/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+
+<script id="jsbin-javascript">
+// Precio base de la cotización en quetzales
+var precio_base = 2000;
+
+// Recargos por edad
+var edad_recargos = { 24: 0.1, 49: 0.2, 50: 0.3 };
+
+// Recargo por cada hijo (20% del precio base)
+var recargo_hijo = 0.2;
+
+// Función para calcular recargo por edad
+function calcularRecargoPorEdad(edad) {
+  if (edad >= 18 && edad <= 24) return precio_base * edad_recargos[24];
+  if (edad >= 25 && edad <= 49) return precio_base * edad_recargos[49];
+  if (edad >= 50) return precio_base * edad_recargos[50];
+  return 0;
+}
+
+// Función principal del cotizador
+function cotizarSeguro() {
+  var nombre = prompt("Ingrese su nombre, por favor");
+
+  // Validación de edad del asegurado
+  var edad = parseInt(prompt("¿Cuántos años tiene? Ingrese solo números"));
+  if (isNaN(edad) || edad < 18) {
+    alert("Solo aseguramos a personas mayores de edad.");
+    return;
+  }
+
+  // Estado civil y edad del cónyuge
+  var casado = prompt("¿Está casado actualmente? (SI/NO)").toUpperCase();
+  var edad_conyuge = 0;
+  if (casado === "SI") {
+    edad_conyuge = parseInt(prompt("¿Qué edad tiene su esposo/a?"));
+    if (isNaN(edad_conyuge) || edad_conyuge < 18) {
+      alert("Edad del cónyuge no válida. Se tomará como 0.");
+      edad_conyuge = 0;
+    }
+  }
+
+  // Número de hijos
+  var cantidad_hijos = parseInt(prompt("¿Cuántos hijos tiene? Ingrese solo números"));
+  if (isNaN(cantidad_hijos) || cantidad_hijos < 0) {
+    alert("Cantidad de hijos no válida. Se tomará como 0.");
+    cantidad_hijos = 0;
+  }
+
+  // Cálculo de recargos
+  var recargo_total = 0;
+  var recargo_asegurado = calcularRecargoPorEdad(edad);
+  var recargo_conyuge = calcularRecargoPorEdad(edad_conyuge);
+  var recargo_hijos = cantidad_hijos * (precio_base * recargo_hijo);
+  
+  recargo_total += recargo_asegurado + recargo_conyuge + recargo_hijos;
+
+  // Cálculo del precio final
+  var precio_final = precio_base + recargo_total;
+
+  // Mostrar resultados
+  alert(`Para el asegurado ${nombre}`);
+  alert(`Recargo por el asegurado: Q${recargo_asegurado.toFixed(2)}`);
+  alert(`Recargo por el cónyuge: Q${recargo_conyuge.toFixed(2)}`);
+  alert(`Recargo por hijos (${cantidad_hijos}): Q${recargo_hijos.toFixed(2)}`);
+  alert(`El recargo total será de: Q${recargo_total.toFixed(2)}`);
+  alert(`El precio final de la póliza será de: Q${precio_final.toFixed(2)}`);
+}
+
+// Ejecutar la cotización
+cotizarSeguro();
+
+
+</script>
+</body>
+</html>
